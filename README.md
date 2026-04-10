@@ -144,7 +144,7 @@ tags:
 ---
 ```
 
-4. Aggregation Mechanics
+## 4. Aggregation Mechanics
 
 Git Submodules are used in enterprise-atlas/domains/ to pull in each domain repository.
 Relative links are written to work correctly when the full atlas structure is checked out.
@@ -155,7 +155,7 @@ Scripts generate master indexes, unified Mermaid diagrams, or feed data into a s
 
 
 
-5. Navigation Layers
+## 5. Navigation Layers
 
 Enterprise Atlas (enterprise-atlas/README.md) – High-level entry point with links to all domains
 Domain MOCs (domains/{domain}/index.md) – Business-oriented view of systems and capabilities
@@ -163,7 +163,7 @@ Type-specific MOCs (domains/{domain}/systems/index.md, etc.)
 Embedded Mermaid diagrams in MOCs and entity files for C4-style visualizations
 
 
-6. Governance & Maintenance Rules
+## 6. Governance & Maintenance Rules
 
 Each domain repository has its own CODEOWNERS file.
 Teams edit only inside their own domain repository.
@@ -172,7 +172,6 @@ CI pipelines in every repo enforce:
 Frontmatter validation
 Internal link checking
 Consistent slug and naming rules
-
 
 
 How to Use This Structure
