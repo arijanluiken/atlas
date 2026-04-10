@@ -15,6 +15,7 @@ It supports **multiple Git repositories** (one per domain/tribe) aggregated into
 ## 1. Overall Repository Layout
 
 ### Root Repository: `enterprise-atlas` (The Aggregation Layer)
+```
 enterprise-atlas/                          # Thin Git repo with submodules – unified enterprise view
 ├── README.md                              # Enterprise Home / Atlas Map of Content (MOC)
 ├── domains/                               # All domain vaults as Git submodules
@@ -45,7 +46,10 @@ enterprise-atlas/                          # Thin Git repo with submodules – u
 │   └── sync-catalog.sh
 ├── .gitmodules                            # Defines all domain submodules
 └── docs/                                  # Optional rendered documentation output
+```
+
 ### Example Domain Repository (`domains-finance.git`)
+```
 domains-finance/                           # Independent Git repo owned by the Finance tribe
 ├── README.md                              # Finance Domain Atlas Map of Content (MOC)
 ├── index.md                               # List of all Systems in this domain
@@ -69,6 +73,41 @@ domains-finance/                           # Independent Git repo owned by the F
 │   └── payment-system-container.md
 ├── templates/                             # Optional: domain-specific templates
 └── .github/                               # CI workflows, CODEOWNERS, etc.[27;2;13~[27;2;1
+```
+
+**Note**: Every domain repository follows the **same internal structure** (`systems/`, `components/`, `resources/`, `diagrams/`, `index.md` files).
+
+---
+
+## 2. Core Entity File Locations & Naming Conventions
+
+- **System** files  → `domains/{domain}/systems/{kebab-case-slug}.md`
+- **Component** files → `domains/{domain}/components/{kebab-case-slug}.md`
+- **Resource** files → `domains/{domain}/resources/{kebab-case-slug}.md` (or `shared/resources/` for enterprise-wide)
+- **Domain MOC**     → `domains/{domain}/index.md` and `domains/{domain}/README.md`
+- **Enterprise MOC** → `enterprise-atlas/README.md`
+
+**Naming convention**: Use `kebab-case` slugs. Slugs must be unique within their type.
+
+---
+
+## 3. YAML Frontmatter Standard (All Entity Files)
+
+```yaml
+---
+type: System | Component | Resource
+name: Human Readable Name
+slug: kebab-case-slug
+domain: Finance
+tribe: Commerce
+owner: team-payments-platform
+status: active | deprecated | planned
+version: "1.2"
+tags: 
+  - payments
+  - critical
+---
+```
 
 
 **Note**: Every domain repository follows the **same internal structure** (`systems/`, `components/`, `resources/`, `diagrams/`, `index.md` files).
@@ -103,40 +142,7 @@ tags:
   - payments
   - critical
 ---
-
-
-**Note**: Every domain repository follows the **same internal structure** (`systems/`, `components/`, `resources/`, `diagrams/`, `index.md` files).
-
----
-
-## 2. Core Entity File Locations & Naming Conventions
-
-- **System** files  → `domains/{domain}/systems/{kebab-case-slug}.md`
-- **Component** files → `domains/{domain}/components/{kebab-case-slug}.md`
-- **Resource** files → `domains/{domain}/resources/{kebab-case-slug}.md` (or `shared/resources/` for enterprise-wide)
-- **Domain MOC**     → `domains/{domain}/index.md` and `domains/{domain}/README.md`
-- **Enterprise MOC** → `enterprise-atlas/README.md`
-
-**Naming convention**: Use `kebab-case` slugs. Slugs must be unique within their type.
-
----
-
-## 3. YAML Frontmatter Standard (All Entity Files)
-
-```yaml
----
-type: System | Component | Resource
-name: Human Readable Name
-slug: kebab-case-slug
-domain: Finance
-tribe: Commerce
-owner: team-payments-platform
-status: active | deprecated | planned
-version: "1.2"
-tags: 
-  - payments
-  - critical
----
+```
 
 4. Aggregation Mechanics
 
